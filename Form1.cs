@@ -21,6 +21,7 @@ namespace INIEditor
         public Form1()
         {
             InitializeComponent();
+            populateTextBoxes();
         }
 
         private void masterFileBrowseBtn_Click(object sender, EventArgs e)
@@ -52,17 +53,38 @@ namespace INIEditor
 
         private void findFilesToEditBtn_Click(object sender, EventArgs e)
         {
-            string[] files = Directory.GetFiles(copyToFolderTextBox.Text, filenameToCopyTextBox.Text, SearchOption.AllDirectories);
-            //serverConfigFiles = Array.Empty<string>();
-            filesToEditListBox.Items.Clear();
-            foreach (string file in files)
+            if (copyToFolderTextBox.Text != "" && filenameToCopyTextBox.Text != "")
             {
-                filesToEditListBox.Items.Add(file);
+                string[] files = Directory.GetFiles(copyToFolderTextBox.Text, filenameToCopyTextBox.Text, SearchOption.AllDirectories);
+                filesToEditListBox.Items.Clear();
+                foreach (string file in files)
+                {
+                    filesToEditListBox.Items.Add(file);
+                }
+                statusLabel.Text = "Status : Ready";
+            }
+            else if (copyToFolderTextBox.Text == "")
+            {
+                statusLabel.Text = "Status : Error no folder to look in.";
+            }
+            else if (filenameToCopyTextBox.Text == "")
+            {
+                statusLabel.Text = "Status : Error no filename to look for.";
             }
         }
 
         private void applyEditsBtn_Click(object sender, EventArgs e)
         {
+            if (masterFileTextBox.Text == "")
+            {
+                statusLabel.Text = "Status : No master file selected";
+                return;
+            }
+            else if (statusLabel.Text != "Status : Ready")
+            {
+                statusLabel.Text = "Status : Files have not been found yet";
+                return;
+            }
             var parser = new IniParser.Parser.IniDataParser();
             parser.Configuration.AllowDuplicateKeys = true;
             var fileParser = new FileIniDataParser();
@@ -72,18 +94,50 @@ namespace INIEditor
                 IniData config = parser.Parse(File.ReadAllText(file));
                 config.Merge(user_config);
                 fileParser.WriteFile(file, config);
-                Debug.WriteLine("Applying File");
+                statusLabel.Text = "Status : Working";
             }
-            Debug.WriteLine("Finished Applying");
+            statusLabel.Text = "Status : Finished";
         }
 
 
-        private bool cleanFiles (string[] files)
+        private string getSettingFilePath()
         {
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+            string strSettingsXmlFilePath = System.IO.Path.Combine(strWorkPath, "Settings.ini");
+            return strSettingsXmlFilePath;
+        }
 
+        private void saveSettingsBtn_Click(object sender, EventArgs e)
+        {
+            string filePath = getSettingFilePath();
+            var fileParser = new FileIniDataParser();
+            IniData data = fileParser.ReadFile(filePath);
+            data["GeneralConfiguration"]["masterFile"] = masterFileTextBox.Text;
+            data["GeneralConfiguration"]["copyToFolder"] = copyToFolderTextBox.Text;
+            data["GeneralConfiguration"]["filenameToCopy"] = filenameToCopyTextBox.Text;
+            fileParser.WriteFile(filePath, data);
+            string readText = File.ReadAllText(filePath);
+            Console.WriteLine(readText);
+            statusLabel.Text = "Status : Files Saved";
+        }
 
+        private void populateTextBoxes()
+        {
+            string filePath = getSettingFilePath();
+            var fileParser = new FileIniDataParser();
+            if (!File.Exists(filePath))
+            {
+                string createText = "GeneralConfiguration" + Environment.NewLine + "masterFile = " + Environment.NewLine + "copyToFolder = " + Environment.NewLine + "filenameToCopy = ";
+                File.WriteAllText(filePath, createText);
+                string readText = File.ReadAllText(filePath);
+                Console.WriteLine(readText);
+            }
+            IniData data = fileParser.ReadFile(filePath);
 
-            return true;
+            masterFileTextBox.Text = data["GeneralConfiguration"]["masterFile"];
+            copyToFolderTextBox.Text = data["GeneralConfiguration"]["copyToFolder"];
+            filenameToCopyTextBox.Text = data["GeneralConfiguration"]["filenameToCopy"];
         }
     }
 }

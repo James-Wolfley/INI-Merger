@@ -29,6 +29,7 @@ namespace INIEditor
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.applyEditsBtn = new System.Windows.Forms.Button();
             this.masterFileTextBox = new System.Windows.Forms.TextBox();
             this.copyToFolderTextBox = new System.Windows.Forms.TextBox();
@@ -41,6 +42,8 @@ namespace INIEditor
             this.label3 = new System.Windows.Forms.Label();
             this.filenameToCopyTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.saveSettingsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // applyEditsBtn
@@ -60,9 +63,8 @@ namespace INIEditor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.masterFileTextBox.Location = new System.Drawing.Point(133, 12);
             this.masterFileTextBox.Name = "masterFileTextBox";
-            this.masterFileTextBox.Size = new System.Drawing.Size(487, 23);
+            this.masterFileTextBox.Size = new System.Drawing.Size(458, 23);
             this.masterFileTextBox.TabIndex = 1;
-            this.masterFileTextBox.Text = "C:\\Users\\Jdubs\\Desktop\\TestFolder\\MasterConfig\\GameUserSettings.ini";
             // 
             // copyToFolderTextBox
             // 
@@ -70,16 +72,15 @@ namespace INIEditor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.copyToFolderTextBox.Location = new System.Drawing.Point(133, 41);
             this.copyToFolderTextBox.Name = "copyToFolderTextBox";
-            this.copyToFolderTextBox.Size = new System.Drawing.Size(487, 23);
+            this.copyToFolderTextBox.Size = new System.Drawing.Size(458, 23);
             this.copyToFolderTextBox.TabIndex = 2;
-            this.copyToFolderTextBox.Text = "C:\\Users\\Jdubs\\Desktop\\TestFolder\\ServerFolders";
             // 
             // masterFileBrowseBtn
             // 
             this.masterFileBrowseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.masterFileBrowseBtn.Location = new System.Drawing.Point(626, 11);
+            this.masterFileBrowseBtn.Location = new System.Drawing.Point(597, 11);
             this.masterFileBrowseBtn.Name = "masterFileBrowseBtn";
-            this.masterFileBrowseBtn.Size = new System.Drawing.Size(75, 23);
+            this.masterFileBrowseBtn.Size = new System.Drawing.Size(104, 23);
             this.masterFileBrowseBtn.TabIndex = 3;
             this.masterFileBrowseBtn.Text = "Browse";
             this.masterFileBrowseBtn.UseVisualStyleBackColor = true;
@@ -88,9 +89,9 @@ namespace INIEditor
             // browseCopyToFolderBtn
             // 
             this.browseCopyToFolderBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browseCopyToFolderBtn.Location = new System.Drawing.Point(626, 40);
+            this.browseCopyToFolderBtn.Location = new System.Drawing.Point(597, 40);
             this.browseCopyToFolderBtn.Name = "browseCopyToFolderBtn";
-            this.browseCopyToFolderBtn.Size = new System.Drawing.Size(75, 23);
+            this.browseCopyToFolderBtn.Size = new System.Drawing.Size(104, 23);
             this.browseCopyToFolderBtn.TabIndex = 4;
             this.browseCopyToFolderBtn.Text = "Browse";
             this.browseCopyToFolderBtn.UseVisualStyleBackColor = true;
@@ -154,7 +155,7 @@ namespace INIEditor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filenameToCopyTextBox.Location = new System.Drawing.Point(133, 71);
             this.filenameToCopyTextBox.Name = "filenameToCopyTextBox";
-            this.filenameToCopyTextBox.Size = new System.Drawing.Size(487, 23);
+            this.filenameToCopyTextBox.Size = new System.Drawing.Size(458, 23);
             this.filenameToCopyTextBox.TabIndex = 10;
             this.filenameToCopyTextBox.Text = "GameUserSettings.ini";
             // 
@@ -167,11 +168,33 @@ namespace INIEditor
             this.label4.TabIndex = 11;
             this.label4.Text = "Filename To Copy To";
             // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(133, 669);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(48, 15);
+            this.statusLabel.TabIndex = 12;
+            this.statusLabel.Text = "Status : ";
+            // 
+            // saveSettingsBtn
+            // 
+            this.saveSettingsBtn.Location = new System.Drawing.Point(597, 71);
+            this.saveSettingsBtn.Name = "saveSettingsBtn";
+            this.saveSettingsBtn.Size = new System.Drawing.Size(104, 23);
+            this.saveSettingsBtn.TabIndex = 13;
+            this.saveSettingsBtn.Text = "Save Settings";
+            this.saveSettingsBtn.UseVisualStyleBackColor = true;
+            this.saveSettingsBtn.Click += new System.EventHandler(this.saveSettingsBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(714, 697);
+            this.Controls.Add(this.saveSettingsBtn);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.filenameToCopyTextBox);
             this.Controls.Add(this.label3);
@@ -184,9 +207,10 @@ namespace INIEditor
             this.Controls.Add(this.copyToFolderTextBox);
             this.Controls.Add(this.masterFileTextBox);
             this.Controls.Add(this.applyEditsBtn);
-            this.MinimumSize = new System.Drawing.Size(678, 647);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(730, 736);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "INI File Merger";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,6 +230,8 @@ namespace INIEditor
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox filenameToCopyTextBox;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Button saveSettingsBtn;
     }
 }
 
