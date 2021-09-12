@@ -104,8 +104,8 @@ namespace INIEditor
         {
             string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
-            string strSettingsXmlFilePath = System.IO.Path.Combine(strWorkPath, "Settings.ini");
-            return strSettingsXmlFilePath;
+            string strSettingsINIFilePath = System.IO.Path.Combine(strWorkPath, "Settings.ini");
+            return strSettingsINIFilePath;
         }
 
         private void saveSettingsBtn_Click(object sender, EventArgs e)
@@ -138,6 +138,47 @@ namespace INIEditor
             masterFileTextBox.Text = data["GeneralConfiguration"]["masterFile"];
             copyToFolderTextBox.Text = data["GeneralConfiguration"]["copyToFolder"];
             filenameToCopyTextBox.Text = data["GeneralConfiguration"]["filenameToCopy"];
+            editorMasterPathTextBox.Text = data["GeneralConfiguration"]["masterFile"];
+
+            polulateEditorText();
+        }
+
+        private void editorLoadMasterBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "INI Files (*.ini)|*.ini";
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    editorMasterPathTextBox.Text = openFileDialog.FileName;
+                }
+            }
+
+            polulateEditorText();
+        }
+
+        private void polulateEditorText()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (string line in File.ReadAllLines(editorMasterPathTextBox.Text))
+            {
+                builder.AppendLine(line);
+            }
+
+            editorTextBox.Text = builder.ToString();
+        }
+
+        private void editorSaveBtn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(editorMasterPathTextBox.Text))
+            {
+                File.WriteAllText(editorMasterPathTextBox.Text, editorTextBox.Text);
+            }
         }
     }
 }
