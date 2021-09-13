@@ -21,6 +21,11 @@ namespace INIEditor
         public Form1()
         {
             InitializeComponent();
+            
+        }
+
+        private void Form1_Shown(Object sender, EventArgs e)
+        {
             populateTextBoxes();
         }
 
@@ -128,10 +133,8 @@ namespace INIEditor
             var fileParser = new FileIniDataParser();
             if (!File.Exists(filePath))
             {
-                string createText = "GeneralConfiguration" + Environment.NewLine + "masterFile = " + Environment.NewLine + "copyToFolder = " + Environment.NewLine + "filenameToCopy = ";
+                string createText = "[GeneralConfiguration]" + Environment.NewLine + "masterFile = " + Environment.NewLine + "copyToFolder = " + Environment.NewLine + "filenameToCopy = ";
                 File.WriteAllText(filePath, createText);
-                string readText = File.ReadAllText(filePath);
-                Console.WriteLine(readText);
             }
             IniData data = fileParser.ReadFile(filePath);
 
@@ -164,13 +167,16 @@ namespace INIEditor
         private void polulateEditorText()
         {
             StringBuilder builder = new StringBuilder();
-
-            foreach (string line in File.ReadAllLines(editorMasterPathTextBox.Text))
+            if (editorMasterPathTextBox.Text != "")
             {
-                builder.AppendLine(line);
-            }
+                foreach (string line in File.ReadAllLines(editorMasterPathTextBox.Text))
+                {
+                    builder.AppendLine(line);
+                }
 
-            editorTextBox.Text = builder.ToString();
+
+                editorTextBox.Text = builder.ToString();
+            }
         }
 
         private void editorSaveBtn_Click(object sender, EventArgs e)

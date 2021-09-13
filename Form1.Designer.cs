@@ -298,6 +298,7 @@ namespace INIEditor
             this.MinimumSize = new System.Drawing.Size(730, 736);
             this.Name = "Form1";
             this.Text = "INI File Merger";
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.tabControl1.ResumeLayout(false);
             this.mergerTab.ResumeLayout(false);
             this.mergerTab.PerformLayout();
