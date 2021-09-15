@@ -51,6 +51,7 @@ namespace INIEditor
             this.editorSaveBtn = new System.Windows.Forms.Button();
             this.editorMasterPathTextBox = new System.Windows.Forms.TextBox();
             this.editorTextBox = new System.Windows.Forms.TextBox();
+            this.deleteSettingsCheckbox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.mergerTab.SuspendLayout();
             this.editorTab.SuspendLayout();
@@ -59,9 +60,10 @@ namespace INIEditor
             // applyEditsBtn
             // 
             this.applyEditsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.applyEditsBtn.Location = new System.Drawing.Point(572, 613);
+            this.applyEditsBtn.Location = new System.Drawing.Point(684, 818);
+            this.applyEditsBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.applyEditsBtn.Name = "applyEditsBtn";
-            this.applyEditsBtn.Size = new System.Drawing.Size(104, 23);
+            this.applyEditsBtn.Size = new System.Drawing.Size(119, 31);
             this.applyEditsBtn.TabIndex = 0;
             this.applyEditsBtn.Text = "Apply Edits";
             this.applyEditsBtn.UseVisualStyleBackColor = true;
@@ -71,26 +73,29 @@ namespace INIEditor
             // 
             this.masterFileTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.masterFileTextBox.Location = new System.Drawing.Point(127, 6);
+            this.masterFileTextBox.Location = new System.Drawing.Point(155, 8);
+            this.masterFileTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.masterFileTextBox.Name = "masterFileTextBox";
-            this.masterFileTextBox.Size = new System.Drawing.Size(439, 23);
+            this.masterFileTextBox.Size = new System.Drawing.Size(521, 27);
             this.masterFileTextBox.TabIndex = 1;
             // 
             // copyToFolderTextBox
             // 
             this.copyToFolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.copyToFolderTextBox.Location = new System.Drawing.Point(127, 35);
+            this.copyToFolderTextBox.Location = new System.Drawing.Point(155, 47);
+            this.copyToFolderTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.copyToFolderTextBox.Name = "copyToFolderTextBox";
-            this.copyToFolderTextBox.Size = new System.Drawing.Size(439, 23);
+            this.copyToFolderTextBox.Size = new System.Drawing.Size(521, 27);
             this.copyToFolderTextBox.TabIndex = 2;
             // 
             // masterFileBrowseBtn
             // 
             this.masterFileBrowseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.masterFileBrowseBtn.Location = new System.Drawing.Point(572, 6);
+            this.masterFileBrowseBtn.Location = new System.Drawing.Point(684, 8);
+            this.masterFileBrowseBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.masterFileBrowseBtn.Name = "masterFileBrowseBtn";
-            this.masterFileBrowseBtn.Size = new System.Drawing.Size(104, 23);
+            this.masterFileBrowseBtn.Size = new System.Drawing.Size(119, 31);
             this.masterFileBrowseBtn.TabIndex = 3;
             this.masterFileBrowseBtn.Text = "Browse";
             this.masterFileBrowseBtn.UseVisualStyleBackColor = true;
@@ -99,9 +104,10 @@ namespace INIEditor
             // browseCopyToFolderBtn
             // 
             this.browseCopyToFolderBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browseCopyToFolderBtn.Location = new System.Drawing.Point(572, 35);
+            this.browseCopyToFolderBtn.Location = new System.Drawing.Point(684, 47);
+            this.browseCopyToFolderBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.browseCopyToFolderBtn.Name = "browseCopyToFolderBtn";
-            this.browseCopyToFolderBtn.Size = new System.Drawing.Size(104, 23);
+            this.browseCopyToFolderBtn.Size = new System.Drawing.Size(119, 31);
             this.browseCopyToFolderBtn.TabIndex = 4;
             this.browseCopyToFolderBtn.Text = "Browse";
             this.browseCopyToFolderBtn.UseVisualStyleBackColor = true;
@@ -110,9 +116,9 @@ namespace INIEditor
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(57, 9);
+            this.label1.Location = new System.Drawing.Point(68, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 15);
+            this.label1.Size = new System.Drawing.Size(81, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "Master File";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -120,9 +126,9 @@ namespace INIEditor
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 38);
+            this.label2.Location = new System.Drawing.Point(24, 51);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 15);
+            this.label2.Size = new System.Drawing.Size(127, 20);
             this.label2.TabIndex = 6;
             this.label2.Text = "Folder to Copy To";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -133,18 +139,20 @@ namespace INIEditor
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filesToEditListBox.FormattingEnabled = true;
-            this.filesToEditListBox.ItemHeight = 15;
-            this.filesToEditListBox.Location = new System.Drawing.Point(127, 94);
+            this.filesToEditListBox.ItemHeight = 20;
+            this.filesToEditListBox.Location = new System.Drawing.Point(155, 125);
+            this.filesToEditListBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.filesToEditListBox.Name = "filesToEditListBox";
-            this.filesToEditListBox.Size = new System.Drawing.Size(549, 514);
+            this.filesToEditListBox.Size = new System.Drawing.Size(521, 724);
             this.filesToEditListBox.TabIndex = 7;
             // 
             // findFilesToEditBtn
             // 
             this.findFilesToEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.findFilesToEditBtn.Location = new System.Drawing.Point(461, 613);
+            this.findFilesToEditBtn.Location = new System.Drawing.Point(684, 779);
+            this.findFilesToEditBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.findFilesToEditBtn.Name = "findFilesToEditBtn";
-            this.findFilesToEditBtn.Size = new System.Drawing.Size(105, 23);
+            this.findFilesToEditBtn.Size = new System.Drawing.Size(119, 31);
             this.findFilesToEditBtn.TabIndex = 8;
             this.findFilesToEditBtn.Text = "Find Files To Edit";
             this.findFilesToEditBtn.UseVisualStyleBackColor = true;
@@ -153,9 +161,9 @@ namespace INIEditor
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(53, 94);
+            this.label3.Location = new System.Drawing.Point(61, 125);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 15);
+            this.label3.Size = new System.Drawing.Size(88, 20);
             this.label3.TabIndex = 9;
             this.label3.Text = "Files To Edit";
             // 
@@ -163,18 +171,19 @@ namespace INIEditor
             // 
             this.filenameToCopyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filenameToCopyTextBox.Location = new System.Drawing.Point(127, 65);
+            this.filenameToCopyTextBox.Location = new System.Drawing.Point(155, 87);
+            this.filenameToCopyTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.filenameToCopyTextBox.Name = "filenameToCopyTextBox";
-            this.filenameToCopyTextBox.Size = new System.Drawing.Size(439, 23);
+            this.filenameToCopyTextBox.Size = new System.Drawing.Size(521, 27);
             this.filenameToCopyTextBox.TabIndex = 10;
             this.filenameToCopyTextBox.Text = "GameUserSettings.ini";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 68);
+            this.label4.Location = new System.Drawing.Point(6, 91);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 15);
+            this.label4.Size = new System.Drawing.Size(147, 20);
             this.label4.TabIndex = 11;
             this.label4.Text = "Filename To Copy To";
             // 
@@ -182,18 +191,19 @@ namespace INIEditor
             // 
             this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(127, 617);
+            this.statusLabel.Location = new System.Drawing.Point(6, 834);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(48, 15);
+            this.statusLabel.Size = new System.Drawing.Size(60, 20);
             this.statusLabel.TabIndex = 12;
             this.statusLabel.Text = "Status : ";
             // 
             // saveSettingsBtn
             // 
             this.saveSettingsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveSettingsBtn.Location = new System.Drawing.Point(572, 66);
+            this.saveSettingsBtn.Location = new System.Drawing.Point(684, 88);
+            this.saveSettingsBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveSettingsBtn.Name = "saveSettingsBtn";
-            this.saveSettingsBtn.Size = new System.Drawing.Size(104, 23);
+            this.saveSettingsBtn.Size = new System.Drawing.Size(119, 31);
             this.saveSettingsBtn.TabIndex = 13;
             this.saveSettingsBtn.Text = "Save Settings";
             this.saveSettingsBtn.UseVisualStyleBackColor = true;
@@ -206,15 +216,17 @@ namespace INIEditor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.mergerTab);
             this.tabControl1.Controls.Add(this.editorTab);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(14, 16);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(690, 673);
+            this.tabControl1.Size = new System.Drawing.Size(819, 897);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl1.TabIndex = 14;
             // 
             // mergerTab
             // 
+            this.mergerTab.Controls.Add(this.deleteSettingsCheckbox);
             this.mergerTab.Controls.Add(this.applyEditsBtn);
             this.mergerTab.Controls.Add(this.saveSettingsBtn);
             this.mergerTab.Controls.Add(this.masterFileTextBox);
@@ -229,10 +241,11 @@ namespace INIEditor
             this.mergerTab.Controls.Add(this.findFilesToEditBtn);
             this.mergerTab.Controls.Add(this.label2);
             this.mergerTab.Controls.Add(this.filesToEditListBox);
-            this.mergerTab.Location = new System.Drawing.Point(4, 24);
+            this.mergerTab.Location = new System.Drawing.Point(4, 29);
+            this.mergerTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mergerTab.Name = "mergerTab";
-            this.mergerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mergerTab.Size = new System.Drawing.Size(682, 645);
+            this.mergerTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mergerTab.Size = new System.Drawing.Size(811, 864);
             this.mergerTab.TabIndex = 0;
             this.mergerTab.Text = "Merger";
             this.mergerTab.UseVisualStyleBackColor = true;
@@ -243,19 +256,21 @@ namespace INIEditor
             this.editorTab.Controls.Add(this.editorSaveBtn);
             this.editorTab.Controls.Add(this.editorMasterPathTextBox);
             this.editorTab.Controls.Add(this.editorTextBox);
-            this.editorTab.Location = new System.Drawing.Point(4, 24);
+            this.editorTab.Location = new System.Drawing.Point(4, 29);
+            this.editorTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.editorTab.Name = "editorTab";
-            this.editorTab.Padding = new System.Windows.Forms.Padding(3);
-            this.editorTab.Size = new System.Drawing.Size(682, 645);
+            this.editorTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.editorTab.Size = new System.Drawing.Size(811, 819);
             this.editorTab.TabIndex = 1;
             this.editorTab.Text = "Editor";
             this.editorTab.UseVisualStyleBackColor = true;
             // 
             // editorLoadMasterBtn
             // 
-            this.editorLoadMasterBtn.Location = new System.Drawing.Point(486, 615);
+            this.editorLoadMasterBtn.Location = new System.Drawing.Point(555, 820);
+            this.editorLoadMasterBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.editorLoadMasterBtn.Name = "editorLoadMasterBtn";
-            this.editorLoadMasterBtn.Size = new System.Drawing.Size(92, 24);
+            this.editorLoadMasterBtn.Size = new System.Drawing.Size(105, 32);
             this.editorLoadMasterBtn.TabIndex = 3;
             this.editorLoadMasterBtn.Text = "Load Master";
             this.editorLoadMasterBtn.UseVisualStyleBackColor = true;
@@ -263,9 +278,10 @@ namespace INIEditor
             // 
             // editorSaveBtn
             // 
-            this.editorSaveBtn.Location = new System.Drawing.Point(584, 616);
+            this.editorSaveBtn.Location = new System.Drawing.Point(667, 821);
+            this.editorSaveBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.editorSaveBtn.Name = "editorSaveBtn";
-            this.editorSaveBtn.Size = new System.Drawing.Size(92, 23);
+            this.editorSaveBtn.Size = new System.Drawing.Size(105, 31);
             this.editorSaveBtn.TabIndex = 2;
             this.editorSaveBtn.Text = "Save File";
             this.editorSaveBtn.UseVisualStyleBackColor = true;
@@ -273,29 +289,42 @@ namespace INIEditor
             // 
             // editorMasterPathTextBox
             // 
-            this.editorMasterPathTextBox.Location = new System.Drawing.Point(7, 616);
+            this.editorMasterPathTextBox.Location = new System.Drawing.Point(8, 821);
+            this.editorMasterPathTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.editorMasterPathTextBox.Name = "editorMasterPathTextBox";
-            this.editorMasterPathTextBox.Size = new System.Drawing.Size(473, 23);
+            this.editorMasterPathTextBox.Size = new System.Drawing.Size(540, 27);
             this.editorMasterPathTextBox.TabIndex = 1;
             // 
             // editorTextBox
             // 
-            this.editorTextBox.Location = new System.Drawing.Point(7, 7);
+            this.editorTextBox.Location = new System.Drawing.Point(8, 9);
+            this.editorTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.editorTextBox.Multiline = true;
             this.editorTextBox.Name = "editorTextBox";
             this.editorTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.editorTextBox.Size = new System.Drawing.Size(669, 602);
+            this.editorTextBox.Size = new System.Drawing.Size(764, 801);
             this.editorTextBox.TabIndex = 0;
+            // 
+            // deleteSettingsCheckbox
+            // 
+            this.deleteSettingsCheckbox.AutoSize = true;
+            this.deleteSettingsCheckbox.Location = new System.Drawing.Point(682, 748);
+            this.deleteSettingsCheckbox.Name = "deleteSettingsCheckbox";
+            this.deleteSettingsCheckbox.Size = new System.Drawing.Size(132, 24);
+            this.deleteSettingsCheckbox.TabIndex = 14;
+            this.deleteSettingsCheckbox.Text = "Delete Settings";
+            this.deleteSettingsCheckbox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(714, 697);
+            this.ClientSize = new System.Drawing.Size(846, 929);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(730, 736);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MinimumSize = new System.Drawing.Size(832, 966);
             this.Name = "Form1";
             this.Text = "INI File Merger";
             this.Shown += new System.EventHandler(this.Form1_Shown);
@@ -331,6 +360,7 @@ namespace INIEditor
         private System.Windows.Forms.Button editorSaveBtn;
         private System.Windows.Forms.TextBox editorMasterPathTextBox;
         private System.Windows.Forms.TextBox editorTextBox;
+        private System.Windows.Forms.CheckBox deleteSettingsCheckbox;
     }
 }
 

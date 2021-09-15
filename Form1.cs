@@ -21,7 +21,7 @@ namespace INIEditor
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
         private void Form1_Shown(Object sender, EventArgs e)
@@ -80,6 +80,25 @@ namespace INIEditor
 
         private void applyEditsBtn_Click(object sender, EventArgs e)
         {
+            if (deleteSettingsCheckbox.Checked)
+            {
+                var confirmResult = MessageBox.Show("The delete checkbox is checked are you sure?",
+                                     "Apply Delete?",
+                                     MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    applyEdits();
+                }
+            }
+            else
+            {
+                applyEdits();
+            }
+
+        }
+
+        private void applyEdits()
+        {
             if (masterFileTextBox.Text == "")
             {
                 statusLabel.Text = "Status : No master file selected";
@@ -93,17 +112,38 @@ namespace INIEditor
             var parser = new IniParser.Parser.IniDataParser();
             parser.Configuration.AllowDuplicateKeys = true;
             var fileParser = new FileIniDataParser();
-            IniData user_config = parser.Parse(File.ReadAllText(masterFileTextBox.Text));
+            IniData masterFile = parser.Parse(File.ReadAllText(masterFileTextBox.Text));
             foreach (string file in filesToEditListBox.Items)
             {
-                IniData config = parser.Parse(File.ReadAllText(file));
-                config.Merge(user_config);
-                fileParser.WriteFile(file, config);
-                statusLabel.Text = "Status : Working";
+                IniData fileToEdit = parser.Parse(File.ReadAllText(file));
+                if (deleteSettingsCheckbox.Checked)
+                {
+                    foreach (SectionData section in masterFile.Sections)
+                    {
+                        foreach (KeyData key in section.Keys)
+                        {
+                            fileToEdit[section.SectionName].RemoveKey(key.KeyName);
+                        }
+
+                    }
+                    foreach (SectionData section in fileToEdit.Sections)
+                    {
+                        if (section.Keys.Count == 0)
+                        {
+                            fileToEdit.Sections.RemoveSection(section.SectionName);
+                        }
+                    }
+                }
+                else
+                {
+                    fileToEdit.Merge(masterFile);
+                    statusLabel.Text = "Status : Working";
+
+                }
+                fileParser.WriteFile(file, fileToEdit);
             }
             statusLabel.Text = "Status : Finished";
         }
-
 
         private string getSettingFilePath()
         {
